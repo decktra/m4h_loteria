@@ -22,6 +22,21 @@
     <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
     <link href="assets/css/nice-select.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        .loteria-table { width: 100%; max-width: 480px; margin: 0 auto 10px; color: #fff; font-size: 18px; }
+        .loteria-table th { color: #dbdbdb; font-weight: normal; padding: 8px; text-align: center; }
+        .loteria-table td { padding: 8px; vertical-align: middle; text-align: center; }
+        .loteria-table .loteria-numero { font-size: 26px; font-weight: bold; }
+        .loteria-table .loteria-qty { width: 100px; margin: 0 auto; text-align: center; }
+        .loteria-table tfoot td { border-top: 1px solid rgba(255,255,255,.4); font-size: 22px; font-weight: bold; padding-top: 14px; }
+        .wpo-cta-text .loteria-nota { margin: 0 0 25px; }
+        @media (max-width: 590px) {
+            .wpo-cta-area { padding: 40px 16px; }
+            .loteria-table { font-size: 15px; }
+            .loteria-table .loteria-numero { font-size: 20px; }
+            .loteria-table .loteria-qty { width: 75px; }
+        }
+    </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -69,18 +84,20 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="wpo-about-text text-justify">
                             <div class="wpo-section-title">
-                                <h2 style="line-height: 1.2;">Juega con nosotros la LOTERÍA DE NAVIDAD 2025 - ESPAÑA</h2>
-                                <span><b>… y colabora con nuestros programas de ayuda humanitaria en Venezuela</b></span>
+                                <h2 style="line-height: 1.2;">Juega con nosotros la LOTERÍA DE NAVIDAD 2026 - ESPAÑA</h2>
+                                <span><b>… y colabora con Venezuela</b></span>
                             </div>
-                            <p>El año pasado nos tocó algo de los premios y repartimos 11.900 euros entre los que jugaron con nosotros … además de distribuir <b>4.500 platos de comida</b> a niños y niñas en Venezuela</p>
+                            <p><b>¿Y si este año nos toca EL GORDO?</b> Todavía estás a tiempo de jugar la Lotería de Navidad con nosotros.</p>
 
-                            <p>El <b>22540</b> puede ser el número ganador, pero al jugarlo ¡ya estás ganando! … con tu participación de 5 euros, 4,20 euros juegan la lotería y <b>0,80 euros llevan alimento y esperanza a niños y niñas de Venezuela</b>.</p>
-                            
-                            <p>Puedes jugar desde cualquier país del mundo… si ganamos te depositaremos el premio en tu cuenta.</p>
-                            
-                            <p><b>¡Compra tantos boletos como quieras!</b></p>
+                            <p>Este año jugamos con <b>2 números: el 18415 y el 22540</b>.</p>
 
-                            <p>Al hacer tu compra se te enviarán copia de tu participación por correo electrónico … y lo que queda es esperar al 22 de diciembre cuando los niños/as de San Ildefonso canten la Lotería … a ligar EL GORDO</p>
+                            <p>Al comprar tu participación (o participaciones) ¡YA ganaste! … con tu participación de 5 euros, 4,20 euros juegan la lotería y <b>0,80 euros llevan alimento y esperanza a los niños y niñas de Venezuela</b>.</p>
+
+                            <p>Puedes jugar desde cualquier parte… si ganamos nos encargaremos de hacerte llegar tu parte.</p>
+
+                            <p>Lo que queda es esperar al 22 de diciembre cuando los niños de San Ildefonso canten la lotería y ¡a ligar ese premio para todos!</p>
+
+                            <p><b>Quedan pocos números… ¡HAZLO HOY!</b><br>(Te enviaremos confirmación con foto de tu participación)</p>
                             
                             <p>Para más información escríbenos a: hola@meals4hope.org</p>
                         </div>
@@ -101,20 +118,33 @@
                     <div class="col-lg-12">
                         <div class="wpo-cta-text">
                             <!-- <h2>La compra de tickets ha culminado. El lunes 14 de febrero se anunciarán los ganadores.</h2> -->
-                            <form onsubmit="window.location = 'https://donations.meals4hope.org/donations/details?locale=es&currency='  + currency.value + '&frecuency=single&bingo=true&amount=' + amount.value; return false;">
+                            <h2>DONA AQUÍ - LOTERÍA NAVIDAD</h2>
+                            <form id="loteria-form" onsubmit="return comprarLoteria();">
                                 <select id="currency" name="currency" class="form-control input-lg center-block" style="margin-bottom:20px;margin-top:20px;width:280px" required>
-                                    <option value="EUR">Elija la moneda de pago</option>
                                     <option value="EUR">Euros</option>
                                     <option value="USD">Dólares</option>
                                 </select>
-                                <select id="amount" name="amount" class="form-control input-lg center-block" style="margin-bottom:20px;margin-top:20px;width:280px" required>
-                                    <option value=5>Elija cuántos boletos</option>
-                                    <option value=5>1 boleto (5 $/€)</option>
-                                    <option value=10>2 boletos (10 $/€)</option>
-                                    <option value=15>3 boleto (15 $/€)</option>
-                                    <option value=20>4 boleto (20 $/€)</option>
-                                </select>
-                                <!-- <input id="amount" placeholder="Indique cuántos cartones" type="number" name="amount" type="number" min="0" class="form-control input-lg center-block" style="margin-bottom:20px;margin-top:20px;width:280px" required></input> -->
+                                <table class="loteria-table">
+                                    <thead>
+                                        <tr><th>Número</th><th>Participaciones</th><th>Monto</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-numero="18415">
+                                            <td class="loteria-numero">18415</td>
+                                            <td><input type="number" class="form-control input-lg loteria-qty" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Participaciones del 18415"></td>
+                                            <td class="loteria-monto">0</td>
+                                        </tr>
+                                        <tr data-numero="22540">
+                                            <td class="loteria-numero">22540</td>
+                                            <td><input type="number" class="form-control input-lg loteria-qty" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Participaciones del 22540"></td>
+                                            <td class="loteria-monto">0</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr><td colspan="2">Total a pagar</td><td id="loteria-total">0</td></tr>
+                                    </tfoot>
+                                </table>
+                                <p class="loteria-nota">5 €/$ cada participación</p>
                                 <input class="theme-btn-s2" type="submit" value="Comprar">
                             </form>
                         </div>
@@ -162,6 +192,42 @@
     <script src="assets/js/jquery-plugin-collection.js"></script>
     <!-- Custom script for this template -->
     <script src="assets/js/script.js"></script>
+    <script>
+        var PRECIO = 5;
+        function simbolo() { return document.getElementById('currency').value === 'USD' ? ' $' : ' €'; }
+        function cantidad(input) {
+            var n = parseInt(input.value, 10);
+            return isNaN(n) || n < 0 ? 0 : n;
+        }
+        function actualizarLoteria() {
+            var total = 0;
+            document.querySelectorAll('.loteria-table tbody tr').forEach(function (row) {
+                var monto = cantidad(row.querySelector('.loteria-qty')) * PRECIO;
+                row.querySelector('.loteria-monto').textContent = monto + simbolo();
+                total += monto;
+            });
+            document.getElementById('loteria-total').textContent = total + simbolo();
+            return total;
+        }
+        function comprarLoteria() {
+            var total = actualizarLoteria();
+            if (total <= 0) {
+                document.querySelector('.loteria-qty').focus();
+                return false;
+            }
+            var detalle = [];
+            document.querySelectorAll('.loteria-table tbody tr').forEach(function (row) {
+                var n = cantidad(row.querySelector('.loteria-qty'));
+                if (n > 0) detalle.push(row.getAttribute('data-numero') + ': ' + n + (n === 1 ? ' participación' : ' participaciones'));
+            });
+            window.location = 'https://donations.meals4hope.org/donations/details?locale=es&currency=' + document.getElementById('currency').value +
+                '&frecuency=single&bingo=true&amount=' + total + '&message=' + encodeURIComponent('Lotería Navidad 2026 - ' + detalle.join(', '));
+            return false;
+        }
+        document.querySelectorAll('.loteria-qty').forEach(function (i) { i.addEventListener('input', actualizarLoteria); });
+        document.getElementById('currency').addEventListener('change', actualizarLoteria);
+        actualizarLoteria();
+    </script>
 </body>
 
-</html>
+</html>
